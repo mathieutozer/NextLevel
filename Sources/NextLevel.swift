@@ -1019,32 +1019,33 @@ extension NextLevel {
     // outputs, only call within configuration lock
     
     private func addVideoOutput() -> Bool {
-        
-        if self._videoOutput == nil {
-            self._videoOutput = AVCaptureVideoDataOutput()
-            self._videoOutput?.alwaysDiscardsLateVideoFrames = false
-            
-            var videoSettings = [String(kCVPixelBufferPixelFormatTypeKey):Int(kCVPixelFormatType_32BGRA)]
-            if let formatTypes = self._videoOutput?.availableVideoPixelFormatTypes {
-                var supportsFullRange = false
-                var supportsVideoRange = false
-                for format in formatTypes {
-                    if format == Int(kCVPixelFormatType_420YpCbCr8BiPlanarFullRange) {
-                        supportsFullRange = true
-                    }
-                    if format == Int(kCVPixelFormatType_420YpCbCr8BiPlanarVideoRange) {
-                        supportsVideoRange = true
-                    }
-                }
-                if supportsFullRange {
-                    videoSettings[String(kCVPixelBufferPixelFormatTypeKey)] = Int(kCVPixelFormatType_420YpCbCr8BiPlanarFullRange)
-                } else if supportsVideoRange {
-                    videoSettings[String(kCVPixelBufferPixelFormatTypeKey)] = Int(kCVPixelFormatType_420YpCbCr8BiPlanarVideoRange)
-                }
-            }
-            self._videoOutput?.videoSettings = videoSettings
-        }
-        
+
+      //not compiling
+//        if self._videoOutput == nil {
+//            self._videoOutput = AVCaptureVideoDataOutput()
+//            self._videoOutput?.alwaysDiscardsLateVideoFrames = false
+//
+//            var videoSettings = [String(kCVPixelBufferPixelFormatTypeKey):Int(kCVPixelFormatType_32BGRA)]
+//            if let formatTypes = self._videoOutput?.availableVideoPixelFormatTypes {
+//                var supportsFullRange = false
+//                var supportsVideoRange = false
+//                for format in formatTypes {
+//                    if format == Int(kCVPixelFormatType_420YpCbCr8BiPlanarFullRange) {
+//                        supportsFullRange = true
+//                    }
+//                    if format == Int(kCVPixelFormatType_420YpCbCr8BiPlanarVideoRange) {
+//                        supportsVideoRange = true
+//                    }
+//                }
+//                if supportsFullRange {
+//                    videoSettings[String(kCVPixelBufferPixelFormatTypeKey)] = Int(kCVPixelFormatType_420YpCbCr8BiPlanarFullRange)
+//                } else if supportsVideoRange {
+//                    videoSettings[String(kCVPixelBufferPixelFormatTypeKey)] = Int(kCVPixelFormatType_420YpCbCr8BiPlanarVideoRange)
+//                }
+//            }
+//            self._videoOutput?.videoSettings = videoSettings
+//        }
+//
         if let session = self._captureSession, let videoOutput = self._videoOutput {
             if session.canAddOutput(videoOutput) {
                 session.addOutput(videoOutput)
